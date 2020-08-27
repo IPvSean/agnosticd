@@ -42,7 +42,7 @@ project_tag: "{{ env_type }}-{{ guid }}"
 # define the communication method to all the hosts in the deployment
 deploy_local_ssh_config_location: "{{output_dir}}/"
 
-install_bastion: true
+install_bastion_lite: true
 install_common: true
 
 ### If you want a Key Pair name created and injected into the hosts,
@@ -74,7 +74,18 @@ remote_user: ec2-user
 
 # we will let Ansible Workshop Collection take care of this
 common_packages_el8:
-  - python3
+  - vim
+  - git
+  - wget
+  - nano
+  - tree
+  - sshpass
+  - tmux
+  - python3-pip
+  - python3-devel
+  - ansible
+  - gcc
+  - bind-utils
 
 ### Vars that can be removed:
 # use_satellite: true
@@ -89,9 +100,4 @@ repo_method: file
 repo_version: 3.7.0-4
 
 cf_template_description: "{{ env_type }}-{{ guid }} Ansible Agnostic Deployer "
-
-satellite_url: labsat.opentlc.com
-satellite_org: Red_Hat_GPTE_Labs
-satellite_activationkey: ansible-advanced
-
 ...
